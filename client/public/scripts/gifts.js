@@ -1,5 +1,7 @@
 const renderGifts = async () => {
     const response = await fetch('/gifts');
+    // console.log("Here is response from BE");
+    // console.log(response);
     const data = await response.json();
 
     const mainContent = document.getElementById('main-content');

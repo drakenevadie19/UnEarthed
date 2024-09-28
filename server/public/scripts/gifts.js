@@ -1,5 +1,7 @@
 const renderGifts = async () => {
     const response = await fetch('/gifts');
+    // console.log("Here is response from BE");
+    // console.log(response);
     const data = await response.json();
 
     const mainContent = document.getElementById('main-content');
@@ -91,7 +93,7 @@ if (currentPath === '/' || currentPath === '/index.html') {
     renderGifts();
 } 
 // If on a specific team page ("/teams/:teamId"), call renderGift
-else if (currentPath.startsWith('/gift/') && !isNaN(parseInt(currentPath.split('/').pop()))) {
+else if (currentPath.startsWith('/gifts/') && !isNaN(parseInt(currentPath.split('/').pop()))) {
     renderGift();
 } 
 // Redirect to 404 if the URL doesn't match the expected patterns
