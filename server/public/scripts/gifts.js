@@ -49,13 +49,13 @@ const renderGifts = async () => {
     }
 }
 
-// renderGifts();
-const requestedUrl = window.location.href.split('/').pop();
-if (requestedUrl) {
-    window.location.href = '../404.html'
-} else {
-    renderGifts();
-}
+// // renderGifts();
+// const requestedUrl = window.location.href.split('/').pop();
+// if (requestedUrl) {
+//     window.location.href = '../404.html'
+// } else {
+//     renderGifts();
+// }
 
 const renderGift = async () => {
     const requestedID = parseInt(window.location.href.split('/').pop());
@@ -81,4 +81,21 @@ const renderGift = async () => {
     }
 }
 
-renderGift();
+// renderGift();
+
+// Determine if we should call renderGifts or renderGift based on the current URL
+const currentPath = window.location.pathname;
+
+// If on the root ("/"), call renderGifts
+if (currentPath === '/' || currentPath === '/index.html') {
+    renderGifts();
+} 
+// If on a specific team page ("/teams/:teamId"), call renderGift
+else if (currentPath.startsWith('/gift/') && !isNaN(parseInt(currentPath.split('/').pop()))) {
+    renderGift();
+} 
+// Redirect to 404 if the URL doesn't match the expected patterns
+else {
+    window.location.href = '/404.html';
+}
+
